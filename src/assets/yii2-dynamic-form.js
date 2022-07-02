@@ -359,6 +359,28 @@
             });
         }
 
+        // "kartik-v/yii2-widget-datepicker" 1.4.7
+        var $hasDatepicker147 = $(widgetOptionsRoot.widgetItem).find('[id$="-kvdate"]');
+        if ($hasDatepicker147.length > 0) {
+            $hasDatepicker147.each(function(index, el) {
+                $(el).find('input').each(function (index2, kvInput){
+                    if ($(kvInput).data('kvDatepicker')) {
+                        $(kvInput).kvDatepicker('destroy');
+                    }
+
+                    let kvWidgetName = $(kvInput).data('krajee-kvdatepicker');
+                    let indexInp = $(kvInput).attr('id').match(/.+-(\d{1,})-.+/)[1];
+                    let sourceMatches = $(kvInput).data('datepicker-source').match(/(.+-)\d{1,}(-.+)/);
+                    $(kvInput).attr('data-datepicker-source', sourceMatches[1] + indexInp + sourceMatches[2]);
+                    let kvWidget = window['' + kvWidgetName];
+
+                    $(el).kvDatepicker(kvWidget);
+                    initDPRemove($(kvInput).attr('id'));
+                    initDPAddon($(kvInput).attr('id'));
+                });
+            });
+        }
+
         // "kartik-v/yii2-widget-timepicker"
         var $hasTimepicker = $(widgetOptionsRoot.widgetItem).find('[data-krajee-timepicker]');
         if ($hasTimepicker.length > 0) {
