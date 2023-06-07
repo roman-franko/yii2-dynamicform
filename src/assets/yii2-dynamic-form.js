@@ -493,12 +493,16 @@
                     _restoreKrajeeDepdrop($(this));
                 }
                 console.log((typeof initSelect2Loading));
-                if(typeof initSelect2Loading !== "undefined"){
-                    $.when($('#' + id).select2(configSelect2)).done(initSelect2Loading(id, '.select2-container--krajee'));
-                } else {
-                    $.when($('#' + id).select2(configSelect2)).done(initS2Loading(id, '.select2-container--krajee'));
+                if(typeof initSelect2Loading === "undefined") {
+                    window.initSelect2Loading = function(id, optVar){
+                        initS2Loading(id, optVar)
+                    };
+                    window.initSelect2DropStyle = function(id, kvClose, ev){
+                        initS2Change($('#'+id)) // CHANGE HERE
+                    };
                 }
 
+                $.when($('#' + id).select2(configSelect2)).done(initSelect2Loading(id, '.select2-container--krajee'));
 
                 var kvClose = 'kv_close_' + id.replace(/\-/g, '_');
 
