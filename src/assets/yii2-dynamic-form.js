@@ -492,7 +492,8 @@
                     $(this).unbind();
                     _restoreKrajeeDepdrop($(this));
                 }
-                if(initSelect2Loading != undefined){
+                console.log((typeof initSelect2Loading));
+                if(typeof initSelect2Loading !== "undefined"){
                     $.when($('#' + id).select2(configSelect2)).done(initSelect2Loading(id, '.select2-container--krajee'));
                 } else {
                     $.when($('#' + id).select2(configSelect2)).done(initS2Loading(id, '.select2-container--krajee'));
