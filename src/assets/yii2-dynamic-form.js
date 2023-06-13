@@ -492,7 +492,7 @@
                     $(this).unbind();
                     _restoreKrajeeDepdrop($(this));
                 }
-                console.log((typeof initSelect2Loading));
+
                 if(typeof initSelect2Loading === "undefined") {
                     window.initSelect2Loading = function(id, optVar){
                         initS2Loading(id, optVar)
