@@ -1,5 +1,5 @@
 {
-    "name": "stitchua/yii2-dynamicform",
+    "name": "roman-franko/yii2-dynamicform",
     "description": "It is widget to yii2 framework to clone form elements in a nested manner, maintaining accessibility.",
     "keywords": [
         "wbraganca",
@@ -31,7 +31,7 @@
     },
     "autoload": {
         "psr-4": {
-            "stitchua\\dynamicform\\": "src"
+            "romanfranko\\dynamicform\\": "src"
         }
     },
     "config": {
