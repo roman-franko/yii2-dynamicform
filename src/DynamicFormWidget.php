@@ -214,6 +214,16 @@ class DynamicFormWidget extends \yii\base\Widget
         $js .= "});\n";
         $view->registerJs($js, $view::POS_READY);
 
+        // add a keydown (ctrl + i) handler for the clone button
+        $js = '$(document).on("keydown", function(e) {'. "\n";
+        $js .= "    if ((e.key === 'i' || e.key === 'ш') && e.ctrlKey) {\n";
+        $js .= "        e.preventDefault();\n";
+        $js .= '        jQuery(".' .  $this->widgetContainer . '").triggerHandler("beforeInsert", [jQuery("' .  $this->insertButton . '")]);' . "\n";
+        $js .= '        jQuery(".' .  $this->widgetContainer . '").yiiDynamicForm("addItem", '. $this->_hashVar . ', e, jQuery("' .  $this->insertButton . '"));' . "\n";
+        $js .= "    }\n";
+        $js .= "});\n";
+        $view->registerJs($js, $view::POS_READY);
+
         // add a click handler for the remove button
         $js = 'jQuery("#' . $this->formId . '").on("click", "' . $this->deleteButton . '", function(e) {'. "\n";
         $js .= "    e.preventDefault();\n";
